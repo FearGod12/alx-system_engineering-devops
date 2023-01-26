@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#script that displays Best School 10 times
+files=$(ls)
+for file in $files;
+do
+	echo "$file" | cut -f 2- -d "-"
+done
