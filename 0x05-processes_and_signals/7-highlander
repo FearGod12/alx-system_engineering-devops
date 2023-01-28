@@ -2,7 +2,7 @@
 # script that that displays To infinity and beyond indefinitely.
 while true;
 do
+	trap 'I am invincible!!!' SIGTERM
 	echo "To infinity and beyond"
 	sleep 2
-	trap 'I am invincible!!!' SIGTERM
 done
