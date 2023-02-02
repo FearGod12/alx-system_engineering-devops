@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#displays the username,user id and home directory path from
+#the content of the file /etc/passwd using a while loop
+n=0
+list="$(< /etc/passwd cut -d: -f1,3,6)"
+while [ $n -lt ${#list[*]} ]
+do
+	echo "${list[$n]}"
+	((n++))
+done
