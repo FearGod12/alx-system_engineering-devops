@@ -1,0 +1,5 @@
+Host 155255-web-01
+  Hostname 18.210.14.42
+  IdentityFile ~/.ssh/school
+  BatchMode yes
+
