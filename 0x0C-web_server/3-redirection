@@ -8,6 +8,6 @@ sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
 sudo rm /var/www/html/index.nginx-debian.html
 
 search_string="listen \[::\]:80 default_server;"
-replace_string="\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com/watch?v=QH2-TGUlwu4\/; }\n\n"
+replace_string="rewrite ^/redirect_me/(.*)$ https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent; }\n\n"
 sudo sed -i "/$search_string/a $replace_string" /etc/nginx/sites-available/default
 sudo service nginx restart
