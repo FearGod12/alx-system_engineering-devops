@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #Installs nginx listening on port 80
 #configures it to return a page with the string "Hello World!" when quering Nginx at its root
 
