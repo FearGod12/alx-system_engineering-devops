@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# configuring apache to listen at port 8080 instead of port 80
+
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bak
+cp /etc/apache2/ports.conf /etc/apache2/ports.conf.bak
+
+# search and replace
+sed i.bak "s/Listen 80/Listen 8080/g" "/etc/apache2/sites-available/000-default.conf"
+sed i.bak "s/VirtualHost \*:80/VirtualHost \*:8080/g" "/etc/apache2/ports.conf"
+
+service apache2 restart
