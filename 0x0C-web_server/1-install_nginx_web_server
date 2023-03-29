@@ -2,9 +2,19 @@
 #Installs nginx listening on port 80
 #configures it to return a page with the string "Hello World!" when quering Nginx at its root
 
-sudo apt-get -y update
+sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
-service start nginx
+
+cat <<EOF | tee /etc/nginx/sites-available/default > /dev/null
+server {
+	listen 80;
+	root /var/www/html;
+	index index.html;
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+}
+EOF
 
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
