@@ -3,8 +3,10 @@
 #configures it to return a page with the string "Hello World!" when quering Nginx at its root
 
 sudo apt-get update
-sudo apt-get -y upgrade
 sudo apt-get -y install nginx
+sudo /etc/init.d/nginx start
 
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
-rm /var/www/html/index.nginx-debian.html
+sudo rm /var/www/html/index.nginx-debian.html
+
+sudo /etc/init.d/nginx restart
