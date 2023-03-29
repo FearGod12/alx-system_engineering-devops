@@ -17,4 +17,5 @@ server {
 }
 EOF
 
-sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
+rm /var/www/html/index.nginx-debian.html
