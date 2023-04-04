@@ -21,4 +21,4 @@ backend ALX_web_servers
 	server 155255-web-02 3.86.13.6:80 check
 EOF
 
-sudo service haproxy restart
+sudo /etc/init.d/haproxy restart
