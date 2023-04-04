@@ -12,10 +12,10 @@ sudo cat <<EOF | sudo tee -a /etc/haproxy/haproxy.cfg
 
 frontend ALX_load_balancer
 	bind *:80
+	mode http
 	default_backend ALX_web_servers
 
 backend ALX_web_servers
-	mode http
 	balance roundrobin
 	server 155255-web-01 34.229.136.156:80 check
 	server 155255-web-02 54.85.214.9:80 check
