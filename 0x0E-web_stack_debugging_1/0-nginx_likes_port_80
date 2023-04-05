@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # configures Nginx to be running, and listening on port 80 of all the server’s active IPv4 IPs
-
 # Modify the "listen" directives in the configuration file
 sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 # Start the Nginx service
 sudo service nginx restart
+kill -9 "$(cat /run/nginx.pid)"
