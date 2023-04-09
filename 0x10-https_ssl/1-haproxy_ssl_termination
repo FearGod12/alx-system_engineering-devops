@@ -39,12 +39,12 @@ defaults
 
 frontend www-http
 	bind *:80
-	http-request add-header X-Forwarded-For %[src]
+	reqadd X-Forwarded-Proto:\ https
 	default_backend ALX_web_servers
 
 frontend www-https
 	bind *:443 ssl crt /etc/haproxy/certs/www.chukky.tech.pem
-	http-request add-header X-Forwarded-For %[src]
+	reqadd X-Forwarded-Proto:\ https
 	acl letsencrypt-acl path_beg /.well-known/acme-challenge/
 	use_backend letsencrypt-backend if letsencrypt-acl
 	default_backend ALX_web_servers
