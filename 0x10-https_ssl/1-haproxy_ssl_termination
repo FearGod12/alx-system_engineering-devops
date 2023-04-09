@@ -9,6 +9,7 @@ global
 	daemon
 	maxconn 2048
 	tune.ssl.default-dh-param 2048
+
 	# Default SSL material locations
 	ca-base /etc/ssl/certs
 	crt-base /etc/ssl/private
@@ -38,11 +39,12 @@ defaults
 
 frontend www-http
 	bind *:80
-	reqadd X-Forwarded-Proto:\ http
+	http-request add-header X-Forwarded-For %[src]
 	default_backend ALX_web_servers
-	frontend www-https
+
+frontend www-https
 	bind *:443 ssl crt /etc/haproxy/certs/www.chukky.tech.pem
-	reqadd X-Forwarded-Proto:\ https
+	http-request add-header X-Forwarded-For %[src]
 	acl letsencrypt-acl path_beg /.well-known/acme-challenge/
 	use_backend letsencrypt-backend if letsencrypt-acl
 	default_backend ALX_web_servers
