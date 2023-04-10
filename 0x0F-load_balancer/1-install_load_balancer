@@ -17,7 +17,7 @@ frontend ALX_load_balancer
 
 backend ALX_web_servers
 	balance roundrobin
-	server 155255-web-01 34.229.136.156:80 check
+	server 155255-web-01 35.175.64.13:80 check
 	server 155255-web-02 3.86.13.6:80 check
 EOF
 
