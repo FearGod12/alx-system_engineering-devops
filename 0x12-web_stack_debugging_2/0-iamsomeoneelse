@@ -1,7 +1,3 @@
 #!/usr/bin/env bash
 #run the whoami command under the user passed as an argument
-if [[ -z "$1" ]]; then
-	whoami
-else
-	sudo -u $1 whoami
-fi
+sudo su $1 -c whoami
