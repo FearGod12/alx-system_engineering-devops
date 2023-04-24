@@ -6,23 +6,25 @@ import json
 from urllib.request import urlopen
 from sys import argv
 
-url_users = 'https://jsonplaceholder.typicode.com/users/' + argv[1]
+if __name__ == "__main__":
+    url_users = 'https://jsonplaceholder.typicode.com/users/' + argv[1]
 
-name = ''
-with urlopen(url_users) as response1:
-    name = json.loads(response1.read().decode()).get("name")
+    name = ''
+    with urlopen(url_users) as response1:
+        name = json.loads(response1.read().decode()).get("name")
 
-url = 'https://jsonplaceholder.typicode.com/users/' + argv[1] + '/todos'
-html = []
-with urlopen(url) as response:
-    html = json.loads(response.read().decode())
+    url = 'https://jsonplaceholder.typicode.com/users/' + argv[1] + '/todos'
+    html = []
+    with urlopen(url) as response:
+        html = json.loads(response.read().decode())
 
-number = 0
-for each in html:
-    if each.get("completed") is True:
-        number += 1
+    number = 0
+    for each in html:
+        if each.get("completed") is True:
+            number += 1
 
-print("Employee {} is done with tasks({}/{}):".format(name, number, len(html)))
-for each in html:
-    if each.get("completed") is True:
-        print("\t {}".format(each.get("title")))
+    print("Employee {} is done with tasks({}/{}):".format(name, number,
+                                                          len(html)))
+    for each in html:
+        if each.get("completed") is True:
+            print("\t {}".format(each.get("title")))
