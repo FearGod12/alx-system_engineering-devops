@@ -23,13 +23,11 @@ if __name__ == "__main__":
     for each in html:
         data = {}
         data["task"] = each.get("title")
-        if each.get("completed") is True:
-            data["completed"] = "True"
-        else:
-            data["completed"] = "False"
+        data["completed"] = each.get("completed")
         data["username"] = username
         values.append(data)
 
-    dump_data = {key: values}
+    dump_data = {}
+    dump_data[key] = values
     with open("{}.json".format(argv[1]), 'w') as f:
         json.dump(dump_data, f)
