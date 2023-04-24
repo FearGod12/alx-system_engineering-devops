@@ -2,9 +2,9 @@
 ''' using this REST API (https://jsonplaceholder.typicode.com), for a
 given employee ID,returns information about his/her TODO list progress'''
 
+from sys import argv
 import json
 from urllib.request import urlopen
-from sys import argv
 
 if __name__ == "__main__":
     url_users = 'https://jsonplaceholder.typicode.com/users/' + argv[1]
