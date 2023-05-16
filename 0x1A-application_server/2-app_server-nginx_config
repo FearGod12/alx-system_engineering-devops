@@ -1,7 +1,7 @@
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	add_header X-Served-By 155255-web-01;
+	listen 80 default_server; # Listen on port 80 for incoming HTTP requests
+	listen [::]:80 default_server; 
+	add_header X-Served-By 155255-web-01; # Add a custom header to the response
 	root   /var/www/html;
 	index  index.html index.htm;
 
@@ -16,15 +16,15 @@ server {
 	location /redirect_me {
 		return 301 http://google.com/;
 	}
-	error_page 404 /404.html;
+	error_page 404 /404.html; # Define a custom error page for 404 errors
 	location /404 {
 		root /var/www/html;
 		internal;
 	}
 	location /airbnb-onepage/ {
-		proxy_pass http://localhost:5000;
-		proxy_set_header Host $host;
-		proxy_set_header X_Real_IP $remote_addr;
-		proxy_set_header x_Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_pass http://localhost:5000; # Forward requests to http://localhost:5000
+		proxy_set_header Host $host; # Set the "Host" header to the original request's host
+		proxy_set_header X_Real_IP $remote_addr; # Pass the client's real IP address to the proxied server
+		proxy_set_header x_Forwarded-For $proxy_add_x_forwarded_for; # Append the client's IP address to the "X-Forwarded-For" header
 	}
 }

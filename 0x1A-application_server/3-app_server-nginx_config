@@ -1,0 +1,42 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	add_header X-Served-By 155255-web-01;
+	root   /var/www/html;
+	index  index.html index.htm;
+	location / {
+		root /var/www/html;
+		try_files $uri $uri/ =404;
+	}
+	location /hbnb_static {
+		alias /data/web_static/current;
+		index index.html index.htm;
+	}
+	location /redirect_me {
+		return 301 http://google.com/;
+	}
+
+	error_page 404 /404.html;
+	location /404 {
+		root /var/www/html;
+		internal;
+	}
+	location /airbnb-dynamic/number_odd_or_even/ {
+		proxy_pass http://localhost:5001/number_odd_or_even/; # Forward requests to Gunicorn instance on port 5001
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+	location /number_odd_or_even/ {
+		proxy_pass http://localhost:5001; # Forward requests to Gunicorn instance on port 5001
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+	location /airbnb-onepage/ {
+		proxy_pass http://localhost:5000;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+}
